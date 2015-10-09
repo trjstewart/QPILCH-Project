@@ -9,9 +9,13 @@ var page = (function(){
     var btnUnsure = $("#unsure");
     var btnMaleButton = $("#maleChoice");
     var btnFemaleButton = $("#femaleChoice");
-    var btnStartOver = $("#btnStartOver");
+    var btnStartOver = $(".btnStartOver");
     var btnUnder18 = $("#underEighteen");
     var btnOver18 = $("#overEighteen");
+    var btnYes = $(".btnYes");
+    var btnNo = $(".btnNo");
+    var unsureChoices = [];
+    var unsureQuestion = $("#unsureQuestion");
 
     var choice, age, gender;
 
@@ -21,8 +25,10 @@ var page = (function(){
     // all the pages
     var home = $(".content");
     var family1 = $(".family1");
+    var tenancy1 = $(".tenancy1");
     var genderPage = $(".genderPage");
     var agePage = $(".agePage");
+    var unsurePage = $(".unsurePage");
 
     // actual data pages
     var fFU18 = $(".fFU18");
@@ -49,7 +55,8 @@ var page = (function(){
 
     btnUnsure.click(function(){
         choice = 'unsure';
-        changePage(home, family1);
+        changePage(home, unsurePage);
+        decipherChoice();
     });
 
     btnBack.click(function(){
@@ -73,8 +80,10 @@ var page = (function(){
     });
 
     btnStartOver.click(function(){
-       var current = breadCrumbs.pop();
-        changePage(current, home);
+        if (!$(this).hasClass("btnYes")){
+            var current = breadCrumbs.pop();
+            changePage(current, home);
+        }
     });
 
     btnUnder18.click(function(){
@@ -155,6 +164,13 @@ var page = (function(){
         });
     }
 
+    btnYes.click(function(){
+        decipherChoice(true)
+    });
+    btnNo.click(function(){
+        decipherChoice(false)
+    });
+
     var btnClose = $(".btnClose");
     btnClose.click(function(){
         $(this).parents('.row').slideUp();
@@ -173,6 +189,54 @@ var page = (function(){
         }
     }
 
+    function decipherChoice(bool){
+        unsureChoices.push(bool);
+        if (unsureChoices.length == 1) {
+            if (unsureChoices[0] == true){
+                changePage(unsurePage, tenancy1);
+                unsureChoices = [];
+            } else {
+                fadeWords("Have you recently been evicted?");
+            }
+        }
+        if (unsureChoices.length == 2) {
+            if (unsureChoices[1] == true){
+                changePage(unsurePage, tenancy1);
+                unsureChoices = [];
+            } else {
+                fadeWords("Do you need help with arrangements, plans or orders about children?");
+            }
+        }
+        if (unsureChoices.length == 3) {
+            if (unsureChoices[2] == true){
+                changePage(unsurePage, family1);
+                unsureChoices = [];
+            } else {
+                fadeWords("Do you need help for any personal relationship, including divorce or separation? ");
+            }
+        }
+        if (unsureChoices.length == 4) {
+            if (unsureChoices[2] == true){
+                changePage(unsurePage, family1);
+                unsureChoices = [];
+            } else {
+                fadeWords("Unfortunately, this app can't help you.  Feel free to get in touch with us.");
+                btnNo.hide();
+                btnYes.html("Back to Start");
+                btnYes.addClass("btnStartOver");
+                btnYes.removeClass("btnYes");
+            }
+        }
+
+    }
+
+    function fadeWords(new_words){
+        unsureQuestion.fadeOut(function(){
+            unsureQuestion.html(new_words);
+            unsureQuestion.fadeIn();
+
+        });
+    }
 
 
 })();
