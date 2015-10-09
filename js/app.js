@@ -26,6 +26,13 @@ var page = (function(){
 
     // actual data pages
     var fFU18 = $(".fFU18");
+    var fFO18 = $(".fFO18");
+    var fMU18 = $(".fMU18");
+    var fMO18 = $(".fMO18");
+    var tFU18 = $(".tFU18");
+    var tFO18 = $(".tFO18");
+    var tMU18 = $(".tMU18");
+    var tMO18 = $(".tMO18");
 
     var breadCrumbs = [home];
 
@@ -110,6 +117,30 @@ var page = (function(){
                         break;
                 }
                 break;
+            case 'tenancyLaw':
+                switch (gender){
+                    case 'male':
+                        switch (age){
+                            case 'U18':
+                                changePage(current, tMU18);
+                                break;
+                            case 'O18':
+                                changePage(current, tMO18);
+                                break;
+                        }
+                        break;
+                    case 'female':
+                        switch (age){
+                            case 'U18':
+                                changePage(current, tFU18);
+                                break;
+                            case 'O18':
+                                changePage(current, tFO18);
+                                break;
+                        }
+                        break;
+                }
+                break;
         }
     }
 
@@ -120,5 +151,10 @@ var page = (function(){
             breadCrumbs.push(changeTo);
         });
     }
+
+    var btnClose = $(".btnClose");
+    btnClose.click(function(){
+        $(this).parents('.row').slideUp();
+    })
 
 })();

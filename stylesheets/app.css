@@ -1761,6 +1761,11 @@ button::-moz-focus-inner {
 @media only screen and (min-width: 40.0625em) {
   button, .button {
     display: inline-block; } }
+.btnClose {
+  position: absolute;
+  top: 10px;
+  right: 30px; }
+
 .button-group {
   list-style: none;
   margin: 0;
@@ -2141,6 +2146,11 @@ button::-moz-focus-inner {
   margin-right: 0.625rem; }
   .button-bar .button-group div {
     overflow: hidden; }
+
+.btnClose {
+  position: absolute;
+  top: 10px;
+  right: 30px; }
 
 /* Clearing Styles */
 .clearing-thumbs, [data-clearing] {
@@ -2625,6 +2635,11 @@ button::-moz-focus-inner {
     top: 0;
     width: 100%;
     left: 0; }
+
+.btnClose {
+  position: absolute;
+  top: 10px;
+  right: 30px; }
 
 /* Standard Forms */
 form {
@@ -4126,6 +4141,11 @@ ul.pagination {
       font-weight: bold;
       text-transform: uppercase; }
 
+.btnClose {
+  position: absolute;
+  top: 10px;
+  right: 30px; }
+
 .split.button {
   position: relative;
   padding-right: 5.0625rem; }
@@ -4584,6 +4604,16 @@ table {
     margin-top: -5px;
     right: auto;
     top: 50%; } }
+.btnClose {
+  position: absolute;
+  top: 10px;
+  right: 30px; }
+
+.btnClose {
+  position: absolute;
+  top: 10px;
+  right: 30px; }
+
 meta.foundation-mq-topbar {
   font-family: "/only screen and (min-width:40.0625em)/";
   width: 40.0625em; }
