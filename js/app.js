@@ -53,9 +53,8 @@ var page = (function(){
     });
 
     btnBack.click(function(){
-        current = breadCrumbs.pop();
-        crumb = breadCrumbs.pop();
-        changePage(current, crumb);
+        goBack();
+
     });
 
     btnNext.click(function(){
@@ -80,6 +79,10 @@ var page = (function(){
 
     btnUnder18.click(function(){
        age = 'U18';
+        whatNext();
+    });
+    btnOver18.click(function(){
+       age = 'O18';
         whatNext();
     });
 
@@ -155,6 +158,21 @@ var page = (function(){
     var btnClose = $(".btnClose");
     btnClose.click(function(){
         $(this).parents('.row').slideUp();
-    })
+    });
+
+    $('body').on('swiperight', function(){
+        $.mobile.loader("hide");
+        goBack();
+    });
+
+    function goBack(){
+        if (home.css('display') == 'none'){
+            current = breadCrumbs.pop();
+            crumb = breadCrumbs.pop();
+            changePage(current, crumb);
+        }
+    }
+
+
 
 })();
