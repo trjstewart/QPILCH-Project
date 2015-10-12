@@ -50,7 +50,7 @@ var page = (function(){
 
     btnTenancyLaw.click(function(){
         choice = 'tenancyLaw';
-        changePage(home, family1);
+        changePage(home, tenancy1);
     });
 
     btnUnsure.click(function(){
